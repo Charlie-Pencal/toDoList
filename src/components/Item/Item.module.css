@@ -1,0 +1,9 @@
+.listaTarefas{
+    width: 820px;
+    height: 40px;
+    margin: 12px auto;
+    background-color: #FEFBFA;
+    border-radius: 8px;
+    font-family: Inconsolata, monospace;
+    
+}

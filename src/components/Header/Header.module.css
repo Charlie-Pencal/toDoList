@@ -1,0 +1,46 @@
+.header{
+    height: 150px;
+    padding: 12px 24px;
+    display:flex;
+    justify-content: space-between;
+    background-color: #FEFBFA;
+}
+
+.buscar{
+    background-image: '/glass.svg';
+    background-color: #224949;
+    width: 620px;
+    height: 50px;
+    border-radius: 8px;
+    border-style: none;
+    font-size: 20px;
+    font-family: Inconsolata,monospace;
+    color: #FEFBFA;
+    padding: 15px;
+
+}
+.div{
+    margin: auto;
+}
+.navegacaoFiltros{
+    margin:20px
+
+}
+.filtros{  
+    /* margin: 20px; */
+    padding: 12px 50px;
+    color: #224949;
+    font-family: Inconsolata, monospace;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+input:focus {
+    /* font-size: 20px;
+    font-family: Inconsolata,monospace;
+    color: #FEFBFA;
+    padding: 15px; */
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
