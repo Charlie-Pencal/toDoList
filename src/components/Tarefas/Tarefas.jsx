@@ -10,27 +10,26 @@ const Tarefas = () => {
   const [nome, setNome] = useState('');
   const [tarefaEmEdicao, setTarefaEmEdicao] = useState(null);
   const [novoNomeTarefa, setNovoNomeTarefa] = useState('');
-  const { hash } = useLocation()
+  const { hash } = useLocation();
 
-  useEffect(()=>{
-    const filtrarPor = hash.slice(1, hash.length) //pendente ou concluido
-    if(!filtrarPor) { 
-      setTarefasFiltradas(tarefas)
-      return 
+  useEffect(() => {
+    const filtrarPor = hash.slice(1, hash.length); // pendente ou concluído
+    if (!filtrarPor) {
+      setTarefasFiltradas(tarefas);
+      return;
     }
-    
-    const novasTarefas = tarefas.filter((tarefa) => tarefa.status === filtrarPor)
-    setTarefasFiltradas(novasTarefas)
-  },[hash, tarefas])
+
+    const novasTarefas = tarefas.filter((tarefa) => tarefa.status === filtrarPor);
+    setTarefasFiltradas(novasTarefas);
+  }, [hash, tarefas]);
 
   const adicionarTarefa = () => {
     if (tarefaEmEdicao) {
-      // Editar a tarefa existente
       const tarefasAtualizadas = tarefas.map((tarefa) => {
         if (tarefa.id === tarefaEmEdicao) {
           return {
             ...tarefa,
-            nome: novoNomeTarefa
+            nome: novoNomeTarefa,
           };
         }
         return tarefa;
@@ -38,7 +37,6 @@ const Tarefas = () => {
       setTarefas(tarefasAtualizadas);
       setTarefaEmEdicao(null);
     } else {
-      // Adicionar uma nova tarefa
       const novaTarefa = {
         id: Math.round(Math.random() * 1000),
         nome: nome,
@@ -60,7 +58,7 @@ const Tarefas = () => {
     const tarefaParaEditar = tarefas.find((tarefa) => tarefa.id === id);
     if (tarefaParaEditar) {
       setTarefaEmEdicao(id);
-      setNovoNomeTarefa(tarefaParaEditar.name);
+      setNovoNomeTarefa(tarefaParaEditar.nome);
     }
   };
 
@@ -70,7 +68,7 @@ const Tarefas = () => {
       if (tarefa.id === id) {
         return {
           ...tarefa,
-          status: tarefaParaEditar.status === 'pendente' ? 'concluido' : 'pendente'
+          status: tarefaParaEditar.status === 'pendente' ? 'concluido' : 'pendente',
         };
       }
       return tarefa;
@@ -80,6 +78,11 @@ const Tarefas = () => {
 
   return (
     <div>
+      <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
+      {nome}
+      <button type="button" onClick={adicionarTarefa}>
+        <img src="/plus.svg" alt="" />
+      </button>
       {tarefasFiltradas.map((tarefa) => (
         <div key={tarefa.id}>
           {tarefa.id === tarefaEmEdicao ? (
@@ -89,7 +92,7 @@ const Tarefas = () => {
             />
           ) : (
             <Item
-              tarefa={{...tarefa}} 
+              tarefa={{ ...tarefa }}
               onCheck={() => alterarStatus(tarefa.id)}
               onEdit={() => iniciarEdicao(tarefa.id)}
               onRemove={() => removeTarefa(tarefa.id)}
@@ -97,11 +100,6 @@ const Tarefas = () => {
           )}
         </div>
       ))}
-      <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
-      {nome}
-      <button type="button" onClick={adicionarTarefa}>
-        <img src="/plus.svg" alt="" />
-      </button>
     </div>
   );
 };
