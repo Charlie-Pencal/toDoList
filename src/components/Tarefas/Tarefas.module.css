@@ -1,0 +1,20 @@
+.adicao{
+    width: 680px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FEFBFA;
+    border-radius: 8px;
+    padding: 10px;
+    color: #224949;
+    font-family: Inconsolata, monospace;
+    color: #224949;
+    font-size: 18px;
+}
+.barraAdicao{
+    margin: 10px auto;
+    width: 720px;
+    display: flex;
+    gap: 10px;
+}

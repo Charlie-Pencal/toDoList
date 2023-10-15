@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Item from '../Item/Item';
 import Editar from '../Editar/Editar';
+import {adicao, barraAdicao} from '../Tarefas/Tarefas.module.css'
+
 
 const Tarefas = () => {
   const [tarefas, setTarefas] = useState([{ id: 1, nome: 'oi', status: 'pendente' }]);
   const [tarefasFiltradas, setTarefasFiltradas] = useState([]);
-
   const [nome, setNome] = useState('');
   const [tarefaEmEdicao, setTarefaEmEdicao] = useState(null);
   const [novoNomeTarefa, setNovoNomeTarefa] = useState('');
@@ -18,7 +19,6 @@ const Tarefas = () => {
       setTarefasFiltradas(tarefas);
       return;
     }
-
     const novasTarefas = tarefas.filter((tarefa) => tarefa.status === filtrarPor);
     setTarefasFiltradas(novasTarefas);
   }, [hash, tarefas]);
@@ -29,7 +29,7 @@ const Tarefas = () => {
         if (tarefa.id === tarefaEmEdicao) {
           return {
             ...tarefa,
-            nome: novoNomeTarefa,
+            nome: novoNomeTarefa
           };
         }
         return tarefa;
@@ -78,11 +78,12 @@ const Tarefas = () => {
 
   return (
     <div>
-      <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
-      {nome}
-      <button type="button" onClick={adicionarTarefa}>
-        <img src="/plus.svg" alt="" />
-      </button>
+      <div className={barraAdicao}>
+        <input className={adicao} type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
+        <button type="button" onClick={adicionarTarefa}>
+          <img src="/plus.svg" alt="" />
+        </button>
+      </div>
       {tarefasFiltradas.map((tarefa) => (
         <div key={tarefa.id}>
           {tarefa.id === tarefaEmEdicao ? (
