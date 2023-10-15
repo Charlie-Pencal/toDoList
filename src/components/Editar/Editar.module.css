@@ -1,0 +1,13 @@
+.editarBarra{
+    width: 680px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FEFBFA;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: Inconsolata, monospace;
+    color: #224949;
+    font-size: 18px;
+}
